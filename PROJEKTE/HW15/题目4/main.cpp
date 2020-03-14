@@ -1,18 +1,11 @@
-//
-//  main.cpp
-//  题目4
-//
-//  Created by Mark on 2020/2/27.
-//  Copyright © 2020 Mark. All rights reserved.
-//
-
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 class User{
     string Name = "";
     string Pass = "";
-public:
+    public:
     void SetName(string s){
         Name = s;
     }
@@ -25,8 +18,6 @@ public:
     string GetPass(){
         return Pass;
     }
-    User() = default;
-    ~User() = default;
 };
 
 int main(int argc, const char * argv[]) {
@@ -35,17 +26,24 @@ int main(int argc, const char * argv[]) {
     for(int i = 0; i < 10; i++){
         cin>>name>>pass;
         user[i].SetName(name);
-        user[i].SetName(pass);
+        user[i].SetPass(pass);
     }
+START:
     cout<<"Now please search:";
     string search;
     cin>>search;
+    bool flag = true;
+        if(search.find_last_of("END", search.length()-1) == string::npos) flag = false;
+        else search.erase(search.find_last_of("END", 3));
     int i = 0;
     while(i <= 9){
-        if(user[i].GetName() != search) i++;
+        if(strcmp(user[i].GetName().c_str(), search.c_str()) != 0) i++;
         else break;
     }
-    if(i > 9) cout<<"404";
-    else cout<<user[i].GetPass()<<endl;
-    return 0;
+        if(i > 9) cout<<"404";
+        else cout<<user[i].GetPass()<<endl;
+    if(flag == false){
+        goto START;
+    }
+    else return 0;
 }
