@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		26ADE6FA241CEF97009F9287 /* ListNode test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ListNode test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26ADE6FD241CEF97009F9287 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		26ADE704241CFB89009F9287 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				26ADE6FD241CEF97009F9287 /* main.cpp */,
+				26ADE704241CFB89009F9287 /* List.h */,
 			);
 			path = "ListNode test";
 			sourceTree = "<group>";
