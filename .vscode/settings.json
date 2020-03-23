@@ -1,0 +1,8 @@
+{
+    "code-runner.runInTerminal": true,
+    "runInTerminal.clearBeforeRun": true,
+    "files.associations": {
+        "typeinfo": "cpp",
+        "ostream": "cpp"
+    }
+}
