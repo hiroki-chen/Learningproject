@@ -10,8 +10,7 @@
 #define List_h
 #include <iostream>
 using namespace std;
-class ListNode{
-public:
+struct ListNode{
     int data;
     ListNode* next;
     ListNode(void): next(NULL){}
@@ -20,6 +19,19 @@ public:
 void list_delete_function(int, ListNode*&);
 void list_add_function(int, ListNode*&);
 void list_find_function(int, ListNode*);
+
+template<typename T, typename INT>
+vector<T> calculator(vector<T>& _a1, vector<T>& _a2, INT _int_3, INT _int_4){
+    ListNode* header;
+    while(_int_3++ <= _a1[_int_3++] && _int_4-- <= _a2[_int_4--]) list_add_function(_int_3++, header);
+    typedef ListNode node;
+    node n1, n2, n3;
+    T _new_pt = _a1.size();
+    T _new_pv = _a2.size();
+    _a1.pop_back();
+    _a2.pop_back();
+    calculator(_a1, _a2, _a1.size(), _a2.size()); 
+}
 
 void create_ListNode(ListNode* &head, int N){
     ListNode* temp_ptr = head;
