@@ -1,75 +1,75 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-int a,b,n,m;
-class wxl
-{
+
+class Warehouse{
 public:
-    int x, y; //The coordination of each robot//
-    int s; //The serial number of each robot//
-}ht[1000];
-bool panduan(int h)//判断机器人是否会相撞 
-{
-    if(ht[h].x<=0||ht[h].x>a||ht[h].y<=0||ht[h].y>b)
-    {
-        cout<<"Robot "<<h<<" crashes into the wall"<<endl;
+    int row_size, col_size;
+    Warehouse(int a, int b) : row_size(a), col_size(b) {}
+};
+
+class Robot {
+public:
+    int row, col; //The coordination of each robot//
+    int direction; //The serial number of each robot。 0 go north; 1 go east; 2 go south; 3 go west//
+};
+
+inline bool isValidPosition(int& serial_number, Warehouse& warehouse, int& robot_num, vector<Robot>& robot) {
+    if(robot[serial_number].row <= 0 || robot[serial_number].row > warehouse.row_size || robot[serial_number].col <= 0 || robot[serial_number].row > warehouse.col_size) {
+        cout << "Robot " << serial_number << " crashes into the wall" << endl;
         return false;
     }
-    for(int i=1;i<=n;i++)
-    {
-        if(i==h)continue;
-        if(ht[i].x==ht[h].x&&ht[i].y==ht[h].y)
-        {
-            cout<<"Robot "<<h<<" crashes into robot "<<i<<endl;
-            return false;
+    for(int i = 1; i <= robot_num; i++) {
+        if(i == serial_number) continue; //Traverse all the possibilites.
+        if(robot[i].row == robot[serial_number].row && robot[i].col == robot[serial_number].col) { //Judge if there are any robots in the same position//
+            cout << "Robot " << serial_number << " crashes into robot "<< i << endl;
+            return false; 
         }
     }
     return true;
 }
-int main()
-{
-    int i,t,p,j,k;
-    bool flag;
-    string str;
-    cin>>k;
-    while(k--)
-    {
-        cin>>a>>b>>n>>m;
-        for(i=1;i<=n;i++)//将方向转为数字存 
-        {
-            cin>>ht[i].x>>ht[i].y>>str;
-            if(str=="N")ht[i].s=0;
-            else if(str=="E")ht[i].s=1;
-            else if(str=="S")ht[i].s=2;
-            else if(str=="W")ht[i].s=3;
+
+int main(int argc, const char* argv[]) {
+    int a, b;
+    int robot_num, instruction_num;
+    int serial, repeat, loop;
+    bool notcollision;
+    char dir;
+    cin >> loop;
+    while(loop--) {
+        cin >> a >> b
+            >> robot_num >> instruction_num;
+        vector<Robot> robot(robot_num);
+        Warehouse warehouse(a, b);
+        for(int i = 0; i < robot_num; i++) { //convert directions into numbers...
+            cin >> robot[i].row >> robot[i].col
+                         >> dir;
+            if(dir == 'N') robot[i].direction = 0;
+            if(dir == 'E') robot[i].direction = 1;
+            if(dir == 'S') robot[i].direction = 2;
+            if(dir == 'W') robot[i].direction = 3;
         }
-        flag=true;//开始全为不会相撞 
-        for(i=0;i<m;i++)
-        {
-            cin>>t>>str>>p;//t为机器人，str表示往哪个方向，p表示前进几步 
-            if(str=="F")//F最为简单，先判断 
-            {
-                if(flag)
-                {
-                    for(j=0;j<p;j++)
-                    {
-                        if(ht[t].s==0)ht[t].y++;
-                        if(ht[t].s==1)ht[t].x++;
-                        if(ht[t].s==2)ht[t].y--;
-                        if(ht[t].s==3)ht[t].x--;
-                        flag=panduan(t);//此处开始判断 
-                        if(!flag)break;//因为在函数中写了输出函数，此处直接退出 
+        notcollision = true; //Initlization here, all robots stay in the non-collisive position.
+        for(int i = 1; i <= instruction_num; ++i) {
+            cin >> serial >> dir >> repeat;//serial denotes the serialnum of robot and dir denotes the directions of each robot, btw, repeat is the repetition.
+            if(dir == 'F') { 
+                if(notcollision) {
+                    for(int j = 1; j <= repeat; ++j) {
+                        if(robot[serial].direction == 0) ++robot[serial].col;
+                        if(robot[serial].direction == 1) ++robot[serial].row;
+                        if(robot[serial].direction == 2) --robot[serial].col;
+                        if(robot[serial].direction == 3) --robot[serial].row;
+                        ; //Judge is the pos is valid, is not, throw wrong answer and quit.
+                        if(!(notcollision = isValidPosition(serial, warehouse, robot_num, robot))) break;
                     }
                 }
-            }
-            else if(str=="L")
-            {
-                ht[t].s=(ht[t].s-p%4+4)%4;
-            }
-            else if(str=="R")
-            {
-                ht[t].s=(ht[t].s+p%4)%4;
+            } else if(dir == 'L') {
+                robot[serial].direction = (robot[serial].direction - repeat % 4 + 4) % 4; //Left denotes countercolckwise. But if repeat % 4 > direction, then direction may be negativ, so we have to plus another 4.
+            } else if(dir == 'R') {
+                robot[serial].direction = (robot[serial].direction + repeat % 4 ) % 4; //Right denotes clockwise.
             }
         }
-        if(flag)cout<<"OK"<<endl;
+        if(notcollision) cout << "OK!" << endl;  //Judge here last, if no crash happens.
     }
+    return 0;
 }
