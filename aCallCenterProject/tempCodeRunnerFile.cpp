@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <functional>
+
 using namespace std;
 
 class Operator {
@@ -127,31 +128,31 @@ int main(int argc, const char** argv) {
         switch (waiting_call[i].level) {
             case 0: //先找符合要求的，再找下一个优先队列。
                 if (!center.available_operator.empty()) {
-                    i++;
                     Operator person = center.available_operator.top();
                     center.available_operator.pop();
                     person.end_time = end_time;
                     center.unavailable_operator.push(person);
-                    cout << "Operator " << person.serial << " process call " << " " << i << " call_level " << 0 
+                    cout << "Operator " << person.serial << " process call " << " " << i << " call_level " << waiting_call[i].level 
                          << " end_time " << end_time << endl;
+                    i++;
                 } else {
                     if (!center.available_supervisor.empty()) {
-                        i++;
                         Supervisor person = center.available_supervisor.top();
                         center.available_supervisor.pop();
                         person.end_time = waiting_call[i].call_time + waiting_call[i].expectation;
                         center.unavailable_supervisor.push(person);
-                        cout << "Supervisor " << person.serial << " process call " << i << " call_level " << 0 
+                        cout << "Supervisor " << person.serial << " process call " << i << " call_level " << waiting_call[i].level 
                              << " end_time " << end_time << endl;
+                        i++;
                     } else {
                         if (!center.available_director.empty()) {
-                            i++;
                             Director person = center.available_director.top();
                             center.available_director.pop();
                             person.end_time = waiting_call[i].call_time + waiting_call[i].expectation;
                             center.unavailable_director.push(person);
-                            cout << "Director " << person.serial << " process call " << i << " call_level " << 0 
+                            cout << "Director " << person.serial << " process call " << i << " call_level " << waiting_call[i].level 
                                  << " end_time " << end_time << endl;
+                            i++;
                         } else {
                             cout << "No Agent now, stop." << endl;
                             return 0;
@@ -161,22 +162,22 @@ int main(int argc, const char** argv) {
                 break;
             case 1: 
                 if (!center.available_supervisor.empty()) {
-                    i++;
                     Supervisor person = center.available_supervisor.top();
                     center.available_supervisor.pop();
                     person.end_time = waiting_call[i].call_time + waiting_call[i].expectation;
                     center.unavailable_supervisor.push(person);
-                    cout << "Supervisor " << person.serial << " process call " << i << " call_level " << 1 
+                    cout << "Supervisor " << person.serial << " process call " << i << " call_level " << waiting_call[i].level 
                          << " end_time " << end_time << endl;
+                    i++;
                 } else {
                     if (!center.available_director.empty()) {
-                        i++;
                         Director person = center.available_director.top();
                         center.available_director.pop();
                         person.end_time = waiting_call[i].call_time + waiting_call[i].expectation;
                         center.unavailable_director.push(person);
-                        cout << "Director " << person.serial << " process call " << i << " call_level " << 2 
+                        cout << "Director " << person.serial << " process call " << i << " call_level " << waiting_call[i].level 
                              << " end_time " << end_time << endl;
+                        i++;
                     } else {
                         cout << "No Agent now, stop." << endl;
                         return 0;
@@ -185,13 +186,13 @@ int main(int argc, const char** argv) {
                 break;
             case 2: 
                 if (!center.available_director.empty()) {
-                    i++;
                     Director person = center.available_director.top();
                     center.available_director.pop();
                     person.end_time = waiting_call[i].call_time + waiting_call[i].expectation;
                     center.unavailable_director.push(person);
-                    cout << "Director " << person.serial << " process call " << i << " call_level " << 2 
+                    cout << "Director " << person.serial << " process call " << i << " call_level " << waiting_call[i].level 
                          << " end_time " << end_time << endl;
+                    i++;
                 } else {
                     cout << "No Agent now, stop." << endl;
                     return 0;
