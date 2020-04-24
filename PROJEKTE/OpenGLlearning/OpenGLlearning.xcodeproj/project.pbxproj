@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26019DF62449BB7C002EEDCB /* control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019DF52449BB7C002EEDCB /* control.cpp */; };
+		26019DF92449BB8D002EEDCB /* food.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019DF72449BB8D002EEDCB /* food.cpp */; };
+		26019DFB2449BB9C002EEDCB /* monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019DFA2449BB9C002EEDCB /* monster.cpp */; };
+		26019DFD2449BBA7002EEDCB /* gameover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019DFC2449BBA7002EEDCB /* gameover.cpp */; };
+		26019DFF2449BBB0002EEDCB /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019DFE2449BBB0002EEDCB /* init.cpp */; };
+		26019E012449BBBC002EEDCB /* labyrinth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019E002449BBBC002EEDCB /* labyrinth.cpp */; };
+		26019E032449BBC8002EEDCB /* gamestart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019E022449BBC8002EEDCB /* gamestart.cpp */; };
+		26019E052449BBD5002EEDCB /* gameresult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019E042449BBD5002EEDCB /* gameresult.cpp */; };
+		26019E072449BBE0002EEDCB /* createpacman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019E062449BBE0002EEDCB /* createpacman.cpp */; };
+		26019E092449BBEE002EEDCB /* Pacman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26019E082449BBEE002EEDCB /* Pacman.cpp */; };
 		26D5ACEE24406C3B00EA39FF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26D5ACED24406C3B00EA39FF /* main.cpp */; };
 		26D5ACF624406C4900EA39FF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D5ACF524406C4900EA39FF /* OpenGL.framework */; };
 		26D5ACF824406C4F00EA39FF /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D5ACF724406C4F00EA39FF /* GLUT.framework */; };
@@ -27,6 +37,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		26019DE92449BA7D002EEDCB /* control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = control.h; sourceTree = "<group>"; };
+		26019DEA2449BA8B002EEDCB /* food.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = food.h; sourceTree = "<group>"; };
+		26019DEC2449BA9A002EEDCB /* createpacman.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = createpacman.h; sourceTree = "<group>"; };
+		26019DED2449BAAF002EEDCB /* gameover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameover.h; sourceTree = "<group>"; };
+		26019DEE2449BAB7002EEDCB /* gamestart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gamestart.h; sourceTree = "<group>"; };
+		26019DEF2449BAC5002EEDCB /* gameresult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameresult.h; sourceTree = "<group>"; };
+		26019DF12449BAE1002EEDCB /* init.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
+		26019DF22449BAF3002EEDCB /* labyrinth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = labyrinth.h; sourceTree = "<group>"; };
+		26019DF32449BAF9002EEDCB /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		26019DF42449BB05002EEDCB /* monster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monster.h; sourceTree = "<group>"; };
+		26019DF52449BB7C002EEDCB /* control.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = control.cpp; sourceTree = "<group>"; };
+		26019DF72449BB8D002EEDCB /* food.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = food.cpp; sourceTree = "<group>"; };
+		26019DFA2449BB9C002EEDCB /* monster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = monster.cpp; sourceTree = "<group>"; };
+		26019DFC2449BBA7002EEDCB /* gameover.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gameover.cpp; sourceTree = "<group>"; };
+		26019DFE2449BBB0002EEDCB /* init.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
+		26019E002449BBBC002EEDCB /* labyrinth.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = labyrinth.cpp; sourceTree = "<group>"; };
+		26019E022449BBC8002EEDCB /* gamestart.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gamestart.cpp; sourceTree = "<group>"; };
+		26019E042449BBD5002EEDCB /* gameresult.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gameresult.cpp; sourceTree = "<group>"; };
+		26019E062449BBE0002EEDCB /* createpacman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = createpacman.cpp; sourceTree = "<group>"; };
+		26019E082449BBEE002EEDCB /* Pacman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pacman.cpp; sourceTree = "<group>"; };
 		26D5ACEA24406C3B00EA39FF /* OpenGLlearning */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLlearning; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D5ACED24406C3B00EA39FF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		26D5ACF524406C4900EA39FF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -50,6 +80,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26019DE52449BA51002EEDCB /* include */ = {
+			isa = PBXGroup;
+			children = (
+				26019DE92449BA7D002EEDCB /* control.h */,
+				26019DEA2449BA8B002EEDCB /* food.h */,
+				26019DEC2449BA9A002EEDCB /* createpacman.h */,
+				26019DED2449BAAF002EEDCB /* gameover.h */,
+				26019DEE2449BAB7002EEDCB /* gamestart.h */,
+				26019DEF2449BAC5002EEDCB /* gameresult.h */,
+				26019DF12449BAE1002EEDCB /* init.h */,
+				26019DF22449BAF3002EEDCB /* labyrinth.h */,
+				26019DF32449BAF9002EEDCB /* main.h */,
+				26019DF42449BB05002EEDCB /* monster.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		26019DE62449BA5C002EEDCB /* bin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		26019DE82449BA6B002EEDCB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				26019DF52449BB7C002EEDCB /* control.cpp */,
+				26019DFC2449BBA7002EEDCB /* gameover.cpp */,
+				26019E002449BBBC002EEDCB /* labyrinth.cpp */,
+				26019DFA2449BB9C002EEDCB /* monster.cpp */,
+				26019E042449BBD5002EEDCB /* gameresult.cpp */,
+				26019E022449BBC8002EEDCB /* gamestart.cpp */,
+				26019E082449BBEE002EEDCB /* Pacman.cpp */,
+				26019DFE2449BBB0002EEDCB /* init.cpp */,
+				26019E062449BBE0002EEDCB /* createpacman.cpp */,
+				26019DF72449BB8D002EEDCB /* food.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		26D5ACE124406C3B00EA39FF = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +141,9 @@
 		26D5ACEC24406C3B00EA39FF /* OpenGLlearning */ = {
 			isa = PBXGroup;
 			children = (
+				26019DE82449BA6B002EEDCB /* src */,
+				26019DE62449BA5C002EEDCB /* bin */,
+				26019DE52449BA51002EEDCB /* include */,
 				26D5ACED24406C3B00EA39FF /* main.cpp */,
 			);
 			path = OpenGLlearning;
@@ -142,7 +216,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26019E092449BBEE002EEDCB /* Pacman.cpp in Sources */,
+				26019E012449BBBC002EEDCB /* labyrinth.cpp in Sources */,
+				26019DFB2449BB9C002EEDCB /* monster.cpp in Sources */,
 				26D5ACEE24406C3B00EA39FF /* main.cpp in Sources */,
+				26019DF62449BB7C002EEDCB /* control.cpp in Sources */,
+				26019DFD2449BBA7002EEDCB /* gameover.cpp in Sources */,
+				26019E052449BBD5002EEDCB /* gameresult.cpp in Sources */,
+				26019DF92449BB8D002EEDCB /* food.cpp in Sources */,
+				26019E032449BBC8002EEDCB /* gamestart.cpp in Sources */,
+				26019DFF2449BBB0002EEDCB /* init.cpp in Sources */,
+				26019E072449BBE0002EEDCB /* createpacman.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

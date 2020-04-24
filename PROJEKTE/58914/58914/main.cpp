@@ -1,295 +1,141 @@
 #include <iostream>
+#include <vector>
+#include <queue>
 #include <algorithm>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
-/*
- template <typename T>
- class vector {
- public:
- typedef T* Iterator; //创建以T为类型的指针“当作数组”。
- Iterator iterator;
- size_t size;
- size_t capacity;
- 
- vector() : iterator(NULL), size(0), capacity(0) {}
- 
- vector(size_t _size, size_t _capacity, T _val) : capacity(_capacity), size(_size), iterator(new T[_size]){
- for(int i = 0; i < _size; ++i)
- this -> iterator[i] = _val;
- }
- 
- vector(const vector& v) {
- this -> size = v.size;
- this -> iterator = new T[this -> size];
- this -> capacity = v.capacity;
- memcpy(this -> iterator, v.iterator, this -> size * sizeof(T));
- }
- 
- ~vector(){
- if(iterator) delete[] iterator;
- }
- 
- T& operator [](const int&);
- void operator =(const vector<T>&);
- void push_back(const T&);
- size_t vectorsize();
- };
- 
- template <typename T>
- void vector<T>:: push_back(const T& data) {
- if(!iterator) {
- capacity = 66;
- size = 0;
- Iterator iterator = new T[capacity];
- }
- if(size == capacity) {
- Iterator new_iterator = new T[capacity * 2];
- memcpy(new_iterator, iterator, this -> size * sizeof(T));
- capacity = capacity * 2;
- delete[] iterator;
- iterator = new_iterator;
- }
- this -> iterator[size++] = data;
- }
- 
- template <typename T>
- void vector<T>:: operator =(const vector<T>& v) {
- if(this -> iterator) {
- delete[] iterator;
- this -> capacity = 0;
- this -> size = 0;
- this -> iterator = NULL;
- }
- //把原来的信息统统删除！
- this -> capacity = v.capacity;
- this -> size = v.size;
- this -> iterator = new T[this -> capacity];
- memcpy(this -> iterator, v.iterator, this -> size * sizeof(T));
- }
- 
- template <typename T>
- T& vector<T>:: operator [](const int& index) {
- return (index > 0 && index < size) ? iterator[index] : iterator[-1];
- }
- 
- template <typename T>
- size_t vector<T>:: vectorsize() {return size;}
- */
-template <typename T> //尝试两个快排版本，时间复杂度为O(nlogn)
-void quicksort1(T data[], int left, int right) {
-    if(left >= right) return;
-    int i, j, pivot;
-    i = left;
-    j = right;
-    pivot = data[left];
-    while (i < j) {
-        while (data[j] >= pivot && i < j) j--;
-        while (data[i] <= pivot && i < j) i++;
-        if(i < j) swap(data[i], data[j]);//找到了就swap掉。
-    }
-    data[left] = data[i];
-    data[i] = pivot;
-    quicksort1(data, left, i - 1);//递归左边
-    quicksort1(data, i + 1, right);//递归右边
-}
 
-template <typename T>
-void quicksort2(T data[], int first, int last) {
-    int lower = first + 1;
-    int upper = last;
-    swap(data[first], data[(first + last) / 2]);
-    T bound = data[first];
-    while (lower <= upper)
-    {
-        while (data[lower] > bound)
-            lower++;
-        while (data[upper] < bound)
-            upper--;
-        if (lower < upper)
-            swap(data[lower++], data[upper--]);
-        else lower++;
-    }
-    swap(data[upper], data[first]);
-    if (first < upper - 1)
-        quicksort2(data, first, upper - 1);
-    if (upper + 1 < last)
-        quicksort2(data, upper + 1, last);
-}
-
-template <typename T>
-void sort(T data[], bool f, int size) {
-    f ? quicksort1(data, 0, size - 1) : quicksort2(data, 0, size - 1);
-}
-
-template <typename T>
-T max(T data[], int size) {
-    T ans = data[0];
-    for(int i = 0; i < size; i++) ans = std::max(ans, data[i]);
-    return ans;
-}
-
-template <typename T>
-T min(T data[], int size) {
-    T ans = data[0];
-    for(int i = 0; i < size; i++) ans = std::min(ans, data[i]);
-    return ans;
-}
-
-template <typename T>
-void print(T data[], int size){
-    for(int i = 0; i < size; i++) cout<<data[i]<<" ";
-}
-
-template <typename T>
-class Node {
+class Operator {
 public:
-    T val;
-    Node* next;
-    
-    Node() : val(), next(NULL) {}
-    Node(T _val) : val(_val), next(NULL) {}
-    ~Node(){}
+    int serial;
+    int end_time;
+    Operator(int n) : serial(n) {}
 };
 
-template <typename T>
-void insert(Node<T>* head, T _val) {
-    Node<T>* p = new Node<T>(-1911.397f);
-    p -> next = head;
-    while(p) {
-        if (p -> val <= _val && _val <= p -> next -> val) {
-            Node<T>* tmp = new Node<T>(_val);
-            tmp -> next = p -> next;
-            p -> next = tmp;
-        }
-        if (_val > p -> next -> val) {
-            Node<T>* tmp = new Node<T>(_val);
-            p -> next -> next = tmp;
-        }
-        p = p -> next;
-    }
-}
-
-template <typename T>
-void remove(Node<T>* head, T _val) {
-    Node<T>* p = new Node<T>(-1911.397f);
-    p -> next = head;
-    while(p) {
-        if(p -> val == _val) {
-            Node<T>* tmp = p -> next -> next;
-            delete p -> next;
-            p -> next = tmp;
-        }
-    }
-}
-
-template <typename T>
-Node<T>* search(Node<T>* head, T _val) {
-    Node<T>* p = new Node<T>(0);
-    p -> next = head;
-    while(p) {
-        if(p -> val == _val)
-            return p;
-    }
-}
-
-template <typename T>
-void print(Node<T>* head) {
-    while(head) {
-        cout << head -> val << " ";
-        head = head -> next;
-    }
-}
-
-template <typename T>
-class Stack {
+class Supervisor {
 public:
-    int size;
-    Node<T> *head;
-    Stack() : size(0), head(new Node<T>) {}
-    
-    void push(T);
-    void pop(void);
-    T top(void);
-    bool empty(void);
+    int serial;
+    int end_time;
+    Supervisor(int n) : serial(n) {}
 };
 
-template<typename T>
-void Stack<T> :: push(T val) {
-    Node<T>* new_head = new Node<T>(val);
-    new_head -> next = head -> next; //采取头插法。
-    head -> next = new_head;
-    size++;
-}
+class Director {
+public:
+    int serial;
+    int end_time;
+    Director(int n) : serial(n) {}
+};
 
-template<typename T>
-void Stack<T> :: pop(void) {
-    if (head -> next) {
-        delete head -> next;
-        head -> next = head -> next -> next;
-        size--;
-    } else {
-        cout << "No elements in stack" << endl;
+class Call {
+public:
+    int level;
+    int call_time;
+    int expectation;
+    Call (int a, int b, int c) : level(a), call_time(b), expectation(c) {}
+};
+
+struct cmp {
+    bool operator () (Operator a, Operator b) {
+        return a.serial >= b.serial;
     }
-}
-
-template <typename T>
-T Stack<T> :: top(void) {
-    return head -> next ? head -> next -> val : "error";
-}
-
-template <typename T>
-bool Stack<T> :: empty(void) {
-    return size == 0;
-}
-
-int main(int argc, const char* argv[]) {
-    int size;
-    cin >> size;
-    bool flag;
-    cin >> flag;
-    int testcase1[size];
-    double testcase2[size];
-    char testcase3[size];
-    Stack<int> test1;
-    Stack<double> test2;
-    Stack<char> test3;
-    srand(time(0));
-    for(int i = 0; i < size; ++i) {
-        int a = rand() % 100 + 1;
-        double b = rand() % 100 + 1;
-        char c = 'a' + rand() % 26 + 0;
-        testcase1[i] = a;
-        testcase2[i] = b;
-        testcase3[i] = c;
-        test1.push(a);
-        test2.push(b);
-        test3.push(c);
+    bool operator () (Supervisor a, Supervisor b) {
+        return a.serial >= b.serial;
     }
-    cout<<"第一个数组的最大值为："<<max(testcase1, size) << "，最小值为：" << min(testcase1, size)<<endl;
-    cout<<"第二个数组的最大值为："<<max(testcase2, size) << "，最小值为：" << min(testcase2, size)<<endl;
-    cout<<"第三个数组的最大值为："<<max(testcase3, size) << "，最小值为：" << min(testcase3, size)<<endl;
-    cout<<"排序前："<<endl;
-    print(testcase1, size);
-    cout<<endl;
-    print(testcase2, size);
-    cout<<endl;
-    print(testcase3, size);
-    cout<<endl;
-    sort(testcase1, flag, size);
-    sort(testcase2, flag, size);
-    sort(testcase3, flag, size);
-    cout<<"排序后："<<endl;
-    print(testcase1, size);
-    cout<<endl;
-    print(testcase2, size);
-    cout<<endl;
-    print(testcase3, size);
-    cout<<endl;
+    bool operator () (Director a, Director b) {
+        return a.serial >= b.serial;
+    }
+};
+
+struct cmp_end_time {
+    bool operator () (Operator a, Operator b) {
+        return a.end_time <= b.end_time;
+    }
+    bool operator () (Supervisor a, Supervisor b) {
+        return a.end_time <= b.end_time;
+    }
+    bool operator () (Director a, Director b) {
+        return a.end_time <= b.end_time;
+    }
+};
+
+class CallCenter {
+    //定义一个函数么？
+public:
+    int operator_num, supervisor_num, director_num;
+    priority_queue<Operator, vector<Operator>, cmp> available_operator;
+    priority_queue<Supervisor, vector<Supervisor>, cmp> available_supervisor;
+    priority_queue<Supervisor, vector<Director>, cmp> available_director;
     
-    cout << "三个栈的内容如下：" << endl;
-    print(test1.head);
-    print(test2.head);
-    print(test3.head);
+    priority_queue<Operator, vector<Operator>, cmp_end_time> unavailable_operator;
+    priority_queue<Operator, vector<Supervisor>, cmp_end_time> unavailable_supervisor;
+    priority_queue<Operator, vector<Director>, cmp_end_time> unavailable_director;
+    
+    CallCenter(int _operator_num, int _supervisor_num, int _director_num) : \
+    operator_num(_operator_num), supervisor_num(_supervisor_num), director_num(_director_num) {}
+};
+
+int main(int argc, const char** argv) {
+    vector<Call> waiting_call;
+    int operator_num, supervisor_num, director_num;
+    int call_num;
+    
+    cin >> operator_num >> supervisor_num >> director_num;
+    
+    CallCenter center(operator_num, supervisor_num, director_num);
+    
+    for (int i = 1; i <= operator_num; i++) center.available_operator.push(Operator(i));
+    for (int i = 1; i <= supervisor_num; i++) center.available_supervisor.push(Supervisor(i));
+    for (int i = 1; i <= director_num; i++) center.available_director.push(Director(i));
+    
+    cin >> call_num;
+    while (call_num--) {
+        int level, call_time, expectation;
+        cin >> level >> call_time >> expectation;
+        waiting_call.push_back(Call(level, call_time, expectation));
+    }
+    
+    int cur_time = 0;
+    
+    for (int i = 0; i < waiting_call.size(); i++, cur_time++) {
+        //先看看在处理电话的人有没有空。
+        
+        while (!(center.unavailable_operator.empty())) {
+            if (cur_time >= center.unavailable_operator.top().end_time) {
+                auto person = center.available_director.top();
+                center.available_operator.push(person);
+                center.unavailable_operator.pop();
+            } else break;
+        }
+        while (!center.unavailable_director.empty()) {
+            if (cur_time >= center.unavailable_director.top().end_time) {
+                auto person = center.unavailable_director.top();
+                center.available_director.push(person);
+                center.unavailable_director.pop();
+            } else break;
+        }
+        while (!center.unavailable_supervisor.empty()) {
+            if (cur_time >= center.unavailable_supervisor.top().end_time) {
+                auto person = center.unavailable_supervisor.top();
+                center.available_supervisor.push(person);
+                center.unavailable_director.pop();
+            } else break;
+        }
+        
+        
+        if (!center.available_director.empty()) {
+            //do something.
+        } else {
+            if (!center.available_supervisor.empty()) {
+                // do something.
+            } else {
+                if (!center.available_director.empty()) {
+                    //do something
+                } else {
+                    cout << "No agent can answer, stop" << endl;
+                    break;
+                }
+            }
+        }
+    }
+    
     return 0;
 }

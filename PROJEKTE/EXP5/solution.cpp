@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 using namespace std;
 /*
  template <typename T>
@@ -262,11 +261,14 @@ int main(int argc, const char* argv[]) {
     Stack<int> test1;
     Stack<double> test2;
     Stack<char> test3;
-    srand(time(0));
+    default_random_engine e;
+    uniform_int_distribution<int> list1(1, 100);
+    uniform_real_distribution<double> list2(0.0, 100.0);
+    uniform_int_distribution<unsigned> list3(97, 122);
     for(int i = 0; i < size; ++i) {
-        int a = rand() % 100 + 1;
-        double b = rand() % 100 + 1;
-        char c = 'a' + rand() % 26 + 0;
+        int a = list1(e);
+        double b = list2(e);
+        char c = list3(e);
         testcase1[i] = a;
         testcase2[i] = b;
         testcase3[i] = c;
